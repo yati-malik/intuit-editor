@@ -9,6 +9,27 @@ export const LocalstoreKeys = {
 }
 
 export const APIS = {
-    "saveContent": "/saveContent",
-    "getContent": "/getContent"
+    "updateContent": "/updateContent",
+    "getContent": "/getContent",
+    "createContent": "/createContent"
 }
+
+export const LIST_TYPES = ['numbered-list', 'bulleted-list']
+export const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']
+
+export const Formats = {
+    bold: 'bold',
+    italic: 'italic',
+    underline: 'underline',
+    headingOne: 'heading-one',
+    headingTwo: 'heading-two',
+    blockQuote: 'block-quote',
+    numberedList: 'numbered-list',
+    bulletedList: 'bulleted-list',
+    left: 'left',
+    center: 'center',
+    right: 'right',
+    justify: 'justify'
+}
+
+export type FormatType = typeof Formats;

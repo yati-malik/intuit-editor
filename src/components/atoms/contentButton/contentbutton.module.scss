@@ -1,0 +1,19 @@
+.content-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #a3c5db;
+    color: #ffffff;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.2s;
+
+    &:hover {
+        background-color: #2980b9;
+        transform: scale(1.05);
+    }
+}

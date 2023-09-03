@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSlate } from 'slate-react';
-import { Fomat, SlateEditor } from '../../../types/editor';
+import { MarkFormatTypes, SlateEditor } from '../../../types/editor';
 import { Icon } from '../../atoms/MarkIcons';
-import { isMarkActive, toggleMark } from '../../organisms/Editor/utils';
+import { isMarkActive, toggleMark } from '../../organisms/editor/utils';
 import { Button } from '../../atoms/Button';
 
 
-export const MarkButton = ({ format, icon }: { format: Fomat, icon: string }) => {
-    const editor: SlateEditor = useSlate()
+export const MarkButton = ({ format, icon }: { format: MarkFormatTypes, icon: string }) => {
+    const editor: SlateEditor = useSlate();
     return (
         <Button
             active={isMarkActive(editor, format)}

@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import isHotkey from 'is-hotkey'
 import { Editable, withReact, Slate } from 'slate-react'
 import { createEditor, Descendant } from 'slate'
@@ -7,6 +7,9 @@ import { SlateEditor } from '../../../types/editor'
 import { saveInDB, toggleMark } from './utils'
 import { Toolbar } from '../../molecules/toolbar/Toolbar'
 import { MarkButton } from '../../molecules/markButton/MarkButton'
+import { BlockButton } from '../../molecules/blockButton/BlockButton'
+import { EditorElement } from '../../molecules/editorElement/EditorElement'
+import { EditorLeaf } from '../../molecules/editorleafs/EditorLeaf'
 
 const HOTKEYS = {
     'mod+b': 'bold',
@@ -23,10 +26,13 @@ const initialValue: Descendant[] = [
     }
 ]
 
+
+
 const RichTextExample = () => {
-    const renderElement = useCallback((props: any) => <Element {...props} />, [])
-    const renderLeaf = useCallback((props: any) => <Leaf {...props} />, [])
+
     const editor: SlateEditor = useMemo(() => withHistory(withReact(createEditor())), [])
+    const renderElement = useCallback((props: any) => <EditorElement {...props} />, [])
+    const renderLeaf = useCallback((props: any) => <EditorLeaf {...props} editor={editor} />, [])
 
     return (
         <Slate editor={editor} initialValue={initialValue}
@@ -42,6 +48,15 @@ const RichTextExample = () => {
                 <MarkButton format="bold" icon="format_bold" />
                 <MarkButton format="italic" icon="format_italic" />
                 <MarkButton format="underline" icon="format_underlined" />
+                <BlockButton format="heading-one" icon="looks_one" />
+                <BlockButton format="heading-two" icon="looks_two" />
+                <BlockButton format="block-quote" icon="format_quote" />
+                <BlockButton format="numbered-list" icon="format_list_numbered" />
+                <BlockButton format="bulleted-list" icon="format_list_bulleted" />
+                <BlockButton format="left" icon="format_align_left" />
+                <BlockButton format="center" icon="format_align_center" />
+                <BlockButton format="right" icon="format_align_right" />
+                <BlockButton format="justify" icon="format_align_justify" />
             </Toolbar>
             <Editable
                 renderElement={renderElement}
@@ -60,36 +75,12 @@ const RichTextExample = () => {
                         }
                     }
                 }}
+
             />
         </Slate>
     )
 }
 
-
-const Element = ({ attributes, children, element }: { attributes: any, children: ReactNode, element: any }) => {
-    const style = { textAlign: element.align }
-    return (
-        <p style={style} {...attributes}>
-            {children}
-        </p>
-    )
-}
-
-const Leaf = ({ attributes, children, leaf }: { attributes: any, children: ReactNode, leaf: any }) => {
-    if (leaf.bold) {
-        children = <strong>{children}</strong>
-    }
-
-    if (leaf.italic) {
-        children = <em>{children}</em>
-    }
-
-    if (leaf.underline) {
-        children = <u>{children}</u>
-    }
-
-    return <span {...attributes}>{children}</span>
-}
 
 
 export default RichTextExample

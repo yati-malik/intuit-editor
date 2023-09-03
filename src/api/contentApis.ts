@@ -37,6 +37,11 @@ export const getContentById = async (id: string): Promise<EditorContent> => {
     return content;
 }
 
-export const saceInDBApi = async (content: Descendant[]) => {
-    const apiResponse = await Axios.post(APIS.saveContent, content, {});
+export const updateContent = async (content: Descendant[]) => {
+    const apiResponse = await Axios.post(APIS.updateContent, content, {});
+}
+
+export const createContent = async (title: string) => {
+    const apiResponse = await Axios.post(APIS.createContent, { title: title }, {});
+    return apiResponse;
 }

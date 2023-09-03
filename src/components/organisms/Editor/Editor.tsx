@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../redux/store';
-import { createContentFetchAction } from '../../../redux/sagas';
+import { fetchContentAction } from '../../../redux/sagas';
 import '../../../styles/editor.scss';
 import RichTextExample from './RichText';
 
@@ -11,7 +11,7 @@ export const Editor = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(createContentFetchAction("212"));
+        dispatch(fetchContentAction("212"));
     }, [dispatch])
 
     const content = useSelector((state: RootState) => state.content);
