@@ -14,7 +14,6 @@ export const toggleMark = (editor: SlateEditor, format: MarkFormatTypes) => {
 
 export const isMarkActive = (editor: SlateEditor, format: MarkFormatTypes) => {
     const marks = Editor.marks(editor);
-    //@ts-ignore
     return marks ? marks[format] === true : false
 }
 
