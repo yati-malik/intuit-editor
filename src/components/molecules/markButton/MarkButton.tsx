@@ -3,7 +3,7 @@ import { useSlate } from 'slate-react';
 import { MarkFormatTypes, SlateEditor } from '../../../types/editor';
 import { Icon } from '../../atoms/MarkIcons';
 import { isMarkActive, toggleMark } from '../../organisms/editor/utils';
-import { Button } from '../../atoms/Button';
+import { Button } from '../../atoms/toolbarButton/Button';
 
 
 export const MarkButton = ({ format, icon }: { format: MarkFormatTypes, icon: string }) => {

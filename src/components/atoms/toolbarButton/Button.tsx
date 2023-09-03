@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, } from 'react';
 import { cx, css } from '@emotion/css';
-import { BaseProps } from '../../types/editor';
+import { BaseProps } from '../../../types/editor';
 
 
 export const Button = (
@@ -13,18 +13,14 @@ export const Button = (
         } & BaseProps
     >
 ) => (
-    <span
+    <span data-testid='span-bt'
         {...props}
         className={cx(
             css`
                 cursor: pointer;
-                color: ${false
-                    ? active
-                        ? 'white'
-                        : '#aaa'
-                    : active
-                        ? 'black'
-                        : '#ccc'};
+                color: ${active
+                    ? 'black'
+                    : '#ccc'};
         `
         )}
     />

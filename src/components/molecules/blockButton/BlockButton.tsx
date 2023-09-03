@@ -1,6 +1,6 @@
 import React from 'react';
 import { AlignTypes, EditorElementType } from '../../../types/editor';
-import { Button } from '../../atoms/Button';
+import { Button } from '../../atoms/toolbarButton/Button';
 import { useSlate } from 'slate-react'
 import { isBlockActive, toggleBlock } from '../../organisms/editor/utils';
 import { Icon } from '../../atoms/MarkIcons';
