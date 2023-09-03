@@ -17,8 +17,9 @@ export function* fetchContent(action: any) {
 
 export function* resolveContent(action: any) {
     try {
+
         yield put(loadingContent({ isloading: true }))
-        const content: EditorContent = yield call(resolveContentApi, action.payload.id);
+        const content: EditorContent = yield call(resolveContentApi, action.payload);
         yield put(contentLoaded(content));
     }
     catch (ex: any) {
@@ -28,4 +29,8 @@ export function* resolveContent(action: any) {
 
 export function* fetchContentSaga() {
     yield takeEvery(SagaActions.CONTENT_FETCH_REQUESTED, fetchContent)
+}
+
+export function* resolveContentSaga() {
+    yield takeEvery(SagaActions.RESOLVE_CONTENT, resolveContent)
 }

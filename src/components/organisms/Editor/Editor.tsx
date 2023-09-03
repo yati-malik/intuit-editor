@@ -8,6 +8,7 @@ import { Descendant } from 'slate'
 import RichTextExample from './TextEditor';
 import { EditorContent } from '../../../types';
 import { saveInDB } from './utils';
+import { updateContent } from '../../../api/contentApis';
 
 let initialValue: Descendant[] = [
     {
@@ -32,6 +33,7 @@ export const Editor = (props: any) => {
     const content = useSelector((state: RootState) => state.content);
 
     const handleResolveContent = useCallback((value: Descendant[]) => {
+        console.log('resolve content')
         const newContent: EditorContent = {
             contentId: content.content?.contentId!,
             title: content.content?.title!,
@@ -51,8 +53,9 @@ export const Editor = (props: any) => {
                 <RichTextExample initialContent={newInitialValue}
                     updateContent={(value: Descendant[]) =>
                         handleContentUpdate(value, content.content?.contentId, content.content?.title)}
-                    resolveContent={(value: Descendant[]) =>
-                        handleResolveContent(value)}
+                    resolveContent={(value: Descendant[]) => handleResolveContent(value)}
+                    saveContent={(value: Descendant[]) =>
+                        handleSaveContent(value, content.content?.contentId, content.content?.title)}
                 ></RichTextExample>
             </>
         )
@@ -73,6 +76,28 @@ const handleContentUpdate = (value: Descendant[], contentId: string | undefined,
             children: value
         }
         saveInDB(newRequest);
+    }
+}
+
+const handleSaveContent = (value: Descendant[], contentId: string | undefined, title: string | undefined) => {
+    if (value && contentId && title) {
+        const newRequest: EditorContent = {
+            contentId: contentId,
+            title: title,
+            children: value
+        }
+        try {
+            (async function () {
+                const data = await updateContent(newRequest);
+                if (data && data.success) {
+                    alert('Content saved successfully!')
+                }
+                else {
+                    alert('Content save failed!')
+                }
+            })();
+        }
+        catch (ex) { }
     }
 }
 

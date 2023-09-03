@@ -9,7 +9,7 @@ interface SavePropTypes {
 
 export const CustomButton = ({ handleAction, icon }: SavePropTypes) => {
     return (
-        <span className={styles['save-btn']} onClick={() => handleAction}>
+        <span className={styles['save-btn']} onClick={() => handleAction()}>
             <Icon>{icon}</Icon>
         </span>
     )

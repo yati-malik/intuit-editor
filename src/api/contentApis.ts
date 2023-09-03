@@ -11,9 +11,11 @@ export const getContentById = async (id: string): Promise<EditorContent> => {
 export const updateContent = async (content: EditorContent) => {
     try {
         const apiResponse = await Axios.post(APIS.updateContent, content, {});
-        return apiResponse.data.body;
+        return apiResponse.data;
     }
-    catch (Ex) { }
+    catch (Ex) {
+        return null;
+    }
 }
 
 export const fetchContentEntriesApi = async () => {
@@ -28,7 +30,7 @@ export const createContentApi = async (title: string): Promise<IdAndTitle> => {
 
 export const resolveContentApi = async (content: EditorContent) => {
     try {
-        const apiResponse = await Axios.post(APIS.getContentEntries, content, {});
+        const apiResponse = await Axios.post(APIS.getResolvedContent, content, {});
         return apiResponse.data.body;
     }
     catch (Ex) { }

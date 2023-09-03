@@ -1,10 +1,11 @@
 import { all } from 'redux-saga/effects';
-import { fetchContentSaga } from './editorSaga';
+import { fetchContentSaga, resolveContentSaga } from './editorSaga';
 import { fetchContenEntriestSaga, createContentEntrySaga } from './entriesContentSaga';
 import { EditorContent } from '../../types';
 
 export function* rootSaga() {
-    yield all([fetchContentSaga(), fetchContenEntriestSaga(), createContentEntrySaga()]);
+    yield all([fetchContentSaga(), fetchContenEntriestSaga(), createContentEntrySaga(),
+    resolveContentSaga()]);
 }
 
 export const SagaActions = {

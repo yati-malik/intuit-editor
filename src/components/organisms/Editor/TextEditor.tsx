@@ -22,10 +22,11 @@ interface Proptypes {
     initialContent: Descendant[];
     updateContent: (value: Descendant[]) => void;
     resolveContent: (value: Descendant[]) => void;
+    saveContent: (value: Descendant[]) => void;
 }
 
 
-const TextEditor = ({ initialContent, updateContent, resolveContent }: Proptypes) => {
+const TextEditor = ({ initialContent, updateContent, resolveContent, saveContent }: Proptypes) => {
 
     const editor: SlateEditor = useMemo(() => withHistory(withReact(createEditor())), [])
     const renderElement = useCallback((props: any) => <EditorElement {...props} />, [])
@@ -54,7 +55,7 @@ const TextEditor = ({ initialContent, updateContent, resolveContent }: Proptypes
                 <BlockButton format="center" icon="format_align_center" />
                 <BlockButton format="right" icon="format_align_right" />
                 <BlockButton format="justify" icon="format_align_justify" />
-                <CustomButton handleAction={() => updateContent(editor.children)} icon='save'></CustomButton>
+                <CustomButton handleAction={() => saveContent(editor.children)} icon='save'></CustomButton>
                 <CustomButton handleAction={() => resolveContent(editor.children)} icon='sync'></CustomButton>
             </Toolbar>
             <Editable
