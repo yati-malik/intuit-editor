@@ -2,12 +2,12 @@ import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { fetchContentAction, resolveContentAction } from '../../../redux/sagas';
-import { useParams } from 'react-router-dom';
+import { useParams, unstable_usePrompt as usePrompt } from 'react-router-dom';
 import styles from './editor.module.scss';
 import { Descendant } from 'slate'
 import RichTextExample from './TextEditor';
 import { EditorContent } from '../../../types';
-import { saveInDB } from './utils';
+import { debounce, saveInDB } from './utils';
 import { updateContent } from '../../../api/contentApis';
 import { Loader } from '../../molecules/loader/Loader';
 
@@ -25,6 +25,11 @@ export const Editor = (props: any) => {
     const { contentId } = useParams()
 
     const dispatch = useDispatch();
+
+    usePrompt({
+        when: true,
+        message: "Are you sure you want to leave?"
+    });
 
     useEffect(() => {
         if (contentId)
@@ -69,7 +74,7 @@ export const Editor = (props: any) => {
     </div>
 }
 
-const handleContentUpdate = (value: Descendant[], contentId: string | undefined, title: string | undefined) => {
+const handleContentUpdate = debounce((value: Descendant[], contentId: string | undefined, title: string | undefined) => {
     if (value && contentId && title) {
         const newRequest: EditorContent = {
             contentId: contentId,
@@ -78,7 +83,7 @@ const handleContentUpdate = (value: Descendant[], contentId: string | undefined,
         }
         saveInDB(newRequest);
     }
-}
+})
 
 const handleSaveContent = (value: Descendant[], contentId: string | undefined, title: string | undefined) => {
     if (value && contentId && title) {

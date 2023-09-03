@@ -75,3 +75,13 @@ export const saveInDB = (content: EditorContent) => {
     catch (ex) { }
 }
 
+export function debounce(func: any, timeout = 300) {
+    let timer: NodeJS.Timeout | null = null;
+    return (...args: any[]) => {
+        //@ts-ignore
+        const context: any = this;
+        timer && clearTimeout(timer);
+        timer = setTimeout(() => { func.apply(context, args) }, timeout);
+    };
+}
+
