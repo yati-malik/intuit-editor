@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from "../../../redux/store";
 import { IdAndTitle } from "../../../types/editor";
 import { Loader } from "../../molecules/loader/Loader";
-import { ContentEntriesState } from "../../../redux/slices/contentEntries";
+import { ContentEntriesState, changeModal } from "../../../redux/slices/contentEntries";
 import { ContentButton } from "../../atoms/contentButton/ContentButton";
 import { AddContentModal } from "../modals/addContentModal/AddContentModal";
 import { createContentEntryAction } from "../../../redux/sagas";
@@ -12,8 +12,6 @@ import { createContentEntryAction } from "../../../redux/sagas";
 export const SidePanel = () => {
     const contents: ContentEntriesState = useSelector((state: RootState) => state.contentEntries);
     const dispatch = useDispatch();
-
-    const [openModal, setOpenModal] = useState<boolean>(false);
 
     const handleContentClick = useCallback((title: string) => {
         if (contents.entries) {
@@ -50,10 +48,10 @@ export const SidePanel = () => {
     }
 
     return <div className={styles.sidepanel}>
-        <div className={styles['button-container']} onClick={() => setOpenModal(true)}>
+        <div className={styles['button-container']} onClick={() => dispatch(changeModal(true))}>
             <ContentButton text="Add Content"></ContentButton>
         </div>
-        <AddContentModal isOpen={openModal} onSubmit={handleContentClick}></AddContentModal>
+        <AddContentModal isOpen={contents.isModal} onSubmit={handleContentClick}></AddContentModal>
         {renderSidePanel()}
     </div>
 }

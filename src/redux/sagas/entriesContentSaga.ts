@@ -1,14 +1,14 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
-import { createContent, getContentById } from '../../api/contentApis';
-import { contentEntriesLoaded, loadingContentEntries, contentEntriesLoadingFailed } from '../slices/contentEntries';
 import { SagaActions } from '.';
+import { createContentApi } from '../../api/contentApis';
 import { IdAndTitle } from '../../types/editor';
-import { title } from 'process';
+import { addContentEntry, contentEntriesLoaded, contentEntriesLoadingFailed, loadingContentEntries } from '../slices/contentEntries';
+
+import { put, call, takeEvery, takeLatest } from 'redux-saga/effects'
 
 export function* fetchContentEntries() {
     try {
         yield put(loadingContentEntries({ isloading: true }))
-        const content: IdAndTitle[] = yield call(getContentById, "2342");
+        const content: IdAndTitle[] = yield call(createContentApi, "2342");
         yield put(contentEntriesLoaded(content));
     }
     catch (ex: any) {
@@ -16,12 +16,11 @@ export function* fetchContentEntries() {
     }
 }
 
-export function* createContentEntry() {
-    debugger;
+export function* createContentEntry(action: any) {
     try {
         yield put(loadingContentEntries({ isloading: true }))
-        const content: IdAndTitle[] = yield call(createContent, title);
-        yield put(contentEntriesLoaded(content));
+        const content: IdAndTitle = yield call(createContentApi, action.payload.title);
+        yield put(addContentEntry(content));
     }
     catch (ex: any) {
         yield put(contentEntriesLoadingFailed({ isloading: false, isError: true, error: ex.toString() }));

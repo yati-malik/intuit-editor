@@ -1,6 +1,8 @@
 import { ReactNode, useState, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
+import { useDispatch } from 'react-redux';
 import styles from './modalportal.module.scss';
+import { changeModal } from "../../../redux/slices/contentEntries";
 
 const defaultReactPortalProps = {
     wrapperId: "react-portal"
@@ -14,6 +16,8 @@ type ReactPortalProps = {
 export const ModalPortal = ({ children, wrapperId }: ReactPortalProps) => {
 
     const [wrapper, setWrapper] = useState<Element | null>(null);
+
+    const dispatch = useDispatch();
 
     useLayoutEffect(() => {
         let element = document.getElementById(wrapperId);
@@ -34,7 +38,7 @@ export const ModalPortal = ({ children, wrapperId }: ReactPortalProps) => {
     }, [wrapperId]);
 
     const modalOverlay = () => {
-        return <div className={styles['modal-overlay']}>
+        return <div className={styles['modal-overlay']} onClick={() => dispatch(changeModal(false))} >
             {children}
         </div>
     }

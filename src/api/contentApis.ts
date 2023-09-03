@@ -1,5 +1,6 @@
 import { APIS, ContentItemType } from "../constants/contants";
 import { EditorContent } from "../types"
+import { IdAndTitle } from "../types/editor";
 import { Axios } from './axios';
 import { Editor, Descendant } from 'slate';
 
@@ -41,7 +42,7 @@ export const updateContent = async (content: Descendant[]) => {
     const apiResponse = await Axios.post(APIS.updateContent, content, {});
 }
 
-export const createContent = async (title: string) => {
+export const createContentApi = async (title: string): Promise<IdAndTitle> => {
     const apiResponse = await Axios.post(APIS.createContent, { title: title }, {});
-    return apiResponse;
+    return apiResponse.data.body;
 }

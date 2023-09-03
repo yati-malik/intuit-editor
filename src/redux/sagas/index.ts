@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
 import { fetchContentSaga } from './editorSaga';
-import { fetchContenEntriestSaga, createContentEntrySaga } from './contentEntries';
+import { fetchContenEntriestSaga, createContentEntrySaga } from './entriesContentSaga';
 
 export function* rootSaga() {
     yield all([fetchContentSaga(), fetchContenEntriestSaga(), createContentEntrySaga()]);

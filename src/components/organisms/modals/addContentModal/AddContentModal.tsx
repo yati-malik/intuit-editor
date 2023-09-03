@@ -17,11 +17,13 @@ export const AddContentModal = ({ isOpen, onSubmit }: ModalProps) => {
         setTitle(event.target.value);
     }
 
+
     if (!isOpen) return null;
 
     return (
+
         <ModalPortal wrapperId="add-content-modal-container">
-            <div className={styles['modal']}>
+            <div className={styles['modal']} onClick={(event) => { event.preventDefault(); event.stopPropagation(); }}>
                 <div className="">
                     <h3 className="modal__modal-title">Add Content</h3>
                 </div>
