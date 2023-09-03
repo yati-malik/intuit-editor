@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import styles from './sidepanel.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from "../../../redux/store";
@@ -7,11 +7,16 @@ import { Loader } from "../../molecules/loader/Loader";
 import { ContentEntriesState, changeModal } from "../../../redux/slices/contentEntries";
 import { ContentButton } from "../../atoms/contentButton/ContentButton";
 import { AddContentModal } from "../modals/addContentModal/AddContentModal";
-import { createContentEntryAction } from "../../../redux/sagas";
+import { createContentEntryAction, fetchContentEntriesAction } from "../../../redux/sagas";
+import { Link } from 'react-router-dom';
 
 export const SidePanel = () => {
     const contents: ContentEntriesState = useSelector((state: RootState) => state.contentEntries);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchContentEntriesAction());
+    }, [dispatch])
 
     const handleContentClick = useCallback((title: string) => {
         if (contents.entries) {
@@ -27,8 +32,8 @@ export const SidePanel = () => {
     const renderContentEntries = () => {
         if (contents.entries && contents.entries.length > 0) {
             return contents.entries.map((contentEntry: IdAndTitle) => {
-                return <div key={contentEntry.contentId}>
-                    {contentEntry.title}
+                return <div className={styles["content-entry"]} key={contentEntry.contentId}>
+                    <Link to={`content/${contentEntry.contentId}`}>{contentEntry.title}</Link>
                 </div>
             })
         }

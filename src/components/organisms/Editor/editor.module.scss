@@ -3,22 +3,12 @@
     position: relative;
     justify-content: center;
     top: 50px;
+    width: 100%;
+    padding-left: 30px;
 
     .editor {
         height: 100vh;
         width: 80%;
         align-items: center;
-
-        .newLine {
-            width: 100%;
-        }
-
-        .bold {
-            font-weight: 700;
-        }
-
-        .itlaic {
-            font-style: italic;
-        }
     }
 }

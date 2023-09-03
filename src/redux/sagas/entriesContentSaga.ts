@@ -1,5 +1,5 @@
 import { SagaActions } from '.';
-import { createContentApi } from '../../api/contentApis';
+import { createContentApi, fetchContentEntriesApi } from '../../api/contentApis';
 import { IdAndTitle } from '../../types/editor';
 import { addContentEntry, contentEntriesLoaded, contentEntriesLoadingFailed, loadingContentEntries } from '../slices/contentEntries';
 
@@ -8,7 +8,7 @@ import { put, call, takeEvery, takeLatest } from 'redux-saga/effects'
 export function* fetchContentEntries() {
     try {
         yield put(loadingContentEntries({ isloading: true }))
-        const content: IdAndTitle[] = yield call(createContentApi, "2342");
+        const content: IdAndTitle[] = yield call(fetchContentEntriesApi);
         yield put(contentEntriesLoaded(content));
     }
     catch (ex: any) {

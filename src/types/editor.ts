@@ -1,5 +1,4 @@
-import { ContentItemType } from "../constants/contants";
-import { BaseEditor } from 'slate'
+import { BaseEditor, Descendant } from 'slate'
 import { ReactEditor } from 'slate-react'
 import { HistoryEditor } from 'slate-history'
 
@@ -9,20 +8,9 @@ export interface IdAndTitle {
 }
 
 export interface EditorContent extends IdAndTitle {
-    items: EditorContentItem[];
+    children: Descendant[];
 }
 
-
-export interface EditorContentItem {
-    id: string;
-    type: ContentItemType;
-    content: ContentModel;
-    stylesClasses: string[];
-}
-
-export interface ContentModel {
-    text: string;
-}
 
 export interface BaseProps {
     className?: string

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Editor } from '../../organisms/editor/Editor';
 import { SidePanel } from '../../organisms/Sidepanel/Sidepanel';
 import styles from '../home/Home.module.scss';
 import { Outlet } from "react-router-dom";
@@ -10,8 +9,8 @@ export const Home = () => {
         <div className={styles['side-panel-container']}>
             <SidePanel></SidePanel>
         </div>
-        <div>
-            <Outlet></Outlet>
-        </div>
+
+        <Outlet></Outlet>
+
     </div>
 }

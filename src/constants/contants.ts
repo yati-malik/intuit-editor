@@ -11,7 +11,8 @@ export const LocalstoreKeys = {
 export const APIS = {
     "updateContent": "/updateContent",
     "getContent": "/getContent",
-    "createContent": "/createContent"
+    "createContent": "/createContent",
+    "getContentEntries": "/getContentEntries"
 }
 
 export const LIST_TYPES = ['numbered-list', 'bulleted-list']

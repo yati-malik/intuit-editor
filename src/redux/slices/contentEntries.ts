@@ -24,6 +24,7 @@ const contentEntries = createSlice({
         },
         contentEntriesLoaded: (state, { payload }: { payload: IdAndTitle[] }) => {
             state.isLoading = false;
+            state.isError = false;
             state.entries = payload;
         },
         contentEntriesLoadingFailed: (state, { payload }) => {

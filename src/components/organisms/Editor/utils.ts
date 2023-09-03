@@ -1,6 +1,6 @@
 import { updateContent } from '../../../api/contentApis';
 import { LIST_TYPES, TEXT_ALIGN_TYPES } from '../../../constants/contants';
-import { AlignTypes, CustomElement, EditorElementType, MarkFormatTypes, SlateEditor } from '../../../types/editor';
+import { AlignTypes, CustomElement, EditorContent, EditorElementType, MarkFormatTypes, SlateEditor } from '../../../types/editor';
 import { Editor, Descendant, Transforms, Element as SlateElement } from 'slate';
 
 export const toggleMark = (editor: SlateEditor, format: MarkFormatTypes) => {
@@ -67,7 +67,12 @@ export const toggleBlock = (editor: SlateEditor, format: EditorElementType | Ali
     }
 }
 
-export const saveInDB = async (content: Descendant[]) => {
-    console.log(content);
-    //await saceInDBApi(content);
+export const saveInDB = (content: EditorContent) => {
+    try {
+        (async function () {
+            await updateContent(content);
+        })();
+    }
+    catch (ex) { }
 }
+

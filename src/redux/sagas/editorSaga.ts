@@ -4,10 +4,10 @@ import { EditorContent } from '../../types';
 import { contentLoaded, loadingContent, contentLoadingFailed } from '../slices/contentSlice';
 import { SagaActions } from '.';
 
-export function* fetchContent() {
+export function* fetchContent(action: any) {
     try {
         yield put(loadingContent({ isloading: true }))
-        const content: EditorContent = yield call(getContentById, "2342");
+        const content: EditorContent = yield call(getContentById, action.payload.id);
         yield put(contentLoaded(content));
     }
     catch (ex: any) {

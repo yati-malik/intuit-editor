@@ -1,6 +1,5 @@
-import { EditorContent, EditorContentItem } from './editor';
+import { EditorContent } from './editor';
 
 export type {
-    EditorContent,
-    EditorContentItem
+    EditorContent
 }

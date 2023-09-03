@@ -17,31 +17,26 @@ const HOTKEYS = {
     'mod+u': 'underline'
 }
 
-const initialValue: Descendant[] = [
-    {
-        type: "paragraph",
-        children: [
-            { text: '' }
-        ]
-    }
-]
+interface Proptypes {
+    initialContent: Descendant[];
+    updateContent: (value: Descendant[]) => void;
+}
 
 
-
-const RichTextExample = () => {
+const TextEditor = ({ initialContent, updateContent }: Proptypes) => {
 
     const editor: SlateEditor = useMemo(() => withHistory(withReact(createEditor())), [])
     const renderElement = useCallback((props: any) => <EditorElement {...props} />, [])
     const renderLeaf = useCallback((props: any) => <EditorLeaf {...props} editor={editor} />, [])
 
     return (
-        <Slate editor={editor} initialValue={initialValue}
+        <Slate editor={editor} initialValue={initialContent}
             onChange={value => {
                 const isAstChange = editor.operations.some(
                     op => 'set_selection' !== op.type
                 )
                 if (isAstChange) {
-                    saveInDB(value);
+                    updateContent(value);
                 }
             }}>
             <Toolbar>
@@ -83,5 +78,5 @@ const RichTextExample = () => {
 
 
 
-export default RichTextExample
+export default TextEditor
 
