@@ -9,6 +9,7 @@ import RichTextExample from './TextEditor';
 import { EditorContent } from '../../../types';
 import { saveInDB } from './utils';
 import { updateContent } from '../../../api/contentApis';
+import { Loader } from '../../molecules/loader/Loader';
 
 let initialValue: Descendant[] = [
     {
@@ -62,8 +63,8 @@ export const Editor = (props: any) => {
     }
 
     return <div className={styles['editor-container']}>
-        {content.isLoading ? <div>Loading...</div>
-            : content.isError ? <div>Error</div>
+        {content.isLoading ? <Loader></Loader>
+            : content.isError ? <div>Something went wrong</div>
                 : <div className={styles['editor']}>{renderContent()}</div>}
     </div>
 }
