@@ -1,7 +1,7 @@
 import { updateContent } from '../../../api/contentApis';
 import { LIST_TYPES, TEXT_ALIGN_TYPES } from '../../../constants/contants';
 import { AlignTypes, CustomElement, EditorContent, EditorElementType, MarkFormatTypes, SlateEditor } from '../../../types/editor';
-import { Editor, Descendant, Transforms, Element as SlateElement } from 'slate';
+import { Editor, Transforms, Element as SlateElement } from 'slate';
 
 export const toggleMark = (editor: SlateEditor, format: MarkFormatTypes) => {
     const isActive = isMarkActive(editor, format)

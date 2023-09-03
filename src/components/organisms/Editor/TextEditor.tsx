@@ -4,12 +4,13 @@ import { Editable, withReact, Slate } from 'slate-react'
 import { createEditor, Descendant } from 'slate'
 import { withHistory } from 'slate-history'
 import { SlateEditor } from '../../../types/editor'
-import { saveInDB, toggleMark } from './utils'
+import { toggleMark } from './utils'
 import { Toolbar } from '../../molecules/toolbar/Toolbar'
 import { MarkButton } from '../../molecules/markButton/MarkButton'
 import { BlockButton } from '../../molecules/blockButton/BlockButton'
 import { EditorElement } from '../../molecules/editorElement/EditorElement'
 import { EditorLeaf } from '../../molecules/editorleafs/EditorLeaf'
+import { CustomButton } from '../../molecules/saveButton/CustomButton'
 
 const HOTKEYS = {
     'mod+b': 'bold',
@@ -20,10 +21,11 @@ const HOTKEYS = {
 interface Proptypes {
     initialContent: Descendant[];
     updateContent: (value: Descendant[]) => void;
+    resolveContent: (value: Descendant[]) => void;
 }
 
 
-const TextEditor = ({ initialContent, updateContent }: Proptypes) => {
+const TextEditor = ({ initialContent, updateContent, resolveContent }: Proptypes) => {
 
     const editor: SlateEditor = useMemo(() => withHistory(withReact(createEditor())), [])
     const renderElement = useCallback((props: any) => <EditorElement {...props} />, [])
@@ -52,6 +54,8 @@ const TextEditor = ({ initialContent, updateContent }: Proptypes) => {
                 <BlockButton format="center" icon="format_align_center" />
                 <BlockButton format="right" icon="format_align_right" />
                 <BlockButton format="justify" icon="format_align_justify" />
+                <CustomButton handleAction={() => updateContent(editor.children)} icon='save'></CustomButton>
+                <CustomButton handleAction={() => resolveContent(editor.children)} icon='sync'></CustomButton>
             </Toolbar>
             <Editable
                 renderElement={renderElement}

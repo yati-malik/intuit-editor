@@ -25,3 +25,11 @@ export const createContentApi = async (title: string): Promise<IdAndTitle> => {
     const apiResponse = await Axios.post(APIS.createContent, { title: title }, {});
     return apiResponse.data.body;
 }
+
+export const resolveContentApi = async (content: EditorContent) => {
+    try {
+        const apiResponse = await Axios.post(APIS.getContentEntries, content, {});
+        return apiResponse.data.body;
+    }
+    catch (Ex) { }
+}

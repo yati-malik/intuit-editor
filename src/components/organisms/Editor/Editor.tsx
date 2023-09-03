@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../redux/store';
-import { fetchContentAction } from '../../../redux/sagas';
+import { fetchContentAction, resolveContentAction } from '../../../redux/sagas';
 import { useParams } from 'react-router-dom';
 import styles from './editor.module.scss';
 import { Descendant } from 'slate'
@@ -31,6 +31,15 @@ export const Editor = (props: any) => {
 
     const content = useSelector((state: RootState) => state.content);
 
+    const handleResolveContent = useCallback((value: Descendant[]) => {
+        const newContent: EditorContent = {
+            contentId: content.content?.contentId!,
+            title: content.content?.title!,
+            children: value
+        }
+        dispatch(resolveContentAction(newContent))
+    }, [content.content?.contentId, content.content?.title, dispatch])
+
 
     const renderContent = () => {
         let newInitialValue = initialValue;
@@ -41,8 +50,10 @@ export const Editor = (props: any) => {
             <>
                 <RichTextExample initialContent={newInitialValue}
                     updateContent={(value: Descendant[]) =>
-                        handleContentUpdate(value, content.content?.contentId, content.content?.title)
-                    }></RichTextExample>
+                        handleContentUpdate(value, content.content?.contentId, content.content?.title)}
+                    resolveContent={(value: Descendant[]) =>
+                        handleResolveContent(value)}
+                ></RichTextExample>
             </>
         )
     }
@@ -63,4 +74,5 @@ const handleContentUpdate = (value: Descendant[], contentId: string | undefined,
         }
         saveInDB(newRequest);
     }
-}   
+}
+

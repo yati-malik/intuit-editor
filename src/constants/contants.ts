@@ -12,7 +12,8 @@ export const APIS = {
     "updateContent": "/updateContent",
     "getContent": "/getContent",
     "createContent": "/createContent",
-    "getContentEntries": "/getContentEntries"
+    "getContentEntries": "/getContentEntries",
+    "getResolvedContent": "/getResolvedContent"
 }
 
 export const LIST_TYPES = ['numbered-list', 'bulleted-list']
