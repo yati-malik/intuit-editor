@@ -21,7 +21,6 @@ export const AddContentModal = ({ isOpen, onSubmit }: ModalProps) => {
     if (!isOpen) return null;
 
     return (
-
         <ModalPortal wrapperId="add-content-modal-container">
             <div className={styles['modal']} onClick={(event) => { event.preventDefault(); event.stopPropagation(); }}>
                 <div className="">
@@ -29,7 +28,8 @@ export const AddContentModal = ({ isOpen, onSubmit }: ModalProps) => {
                 </div>
                 <div className={styles['modal-body']}>
                     <div>Title</div>
-                    <input className={styles['input-text']} type='text' value={title} onChange={handleTitleChange} placeholder='Enter title of the content'></input>
+                    <input className={styles['input-text']} type='text' value={title} onChange={handleTitleChange}
+                        placeholder='Enter title of the content'></input>
                 </div>
                 <div className={styles['btn-container']} onClick={() => onSubmit(title)}>
                     <ContentButton text='Add Content'></ContentButton>

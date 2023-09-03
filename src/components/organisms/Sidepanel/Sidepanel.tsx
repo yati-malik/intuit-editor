@@ -51,7 +51,7 @@ export const SidePanel = () => {
         <div className={styles['button-container']} onClick={() => dispatch(changeModal(true))}>
             <ContentButton text="Add Content"></ContentButton>
         </div>
-        <AddContentModal isOpen={contents.isModal} onSubmit={handleContentClick}></AddContentModal>
+        {contents.isModal && <AddContentModal isOpen={contents.isModal} onSubmit={handleContentClick}></AddContentModal>}
         {renderSidePanel()}
     </div>
 }
