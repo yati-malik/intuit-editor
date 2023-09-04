@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import { setupStore } from './redux/store';
 import { Home } from './components/pages/home/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Editor } from './components/organisms/editor/Editor';
@@ -23,8 +23,8 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className={styles['app-container']}>
-      <Provider store={store}>
+    <div data-testid='app-container' className={styles['app-container']}>
+      <Provider store={setupStore()}>
         <RouterProvider router={router} />
       </Provider >
     </div>

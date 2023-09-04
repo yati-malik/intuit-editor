@@ -39,7 +39,6 @@ export const Editor = (props: any) => {
     const content = useSelector((state: RootState) => state.content);
 
     const handleResolveContent = useCallback((value: Descendant[]) => {
-        console.log('resolve content')
         const newContent: EditorContent = {
             contentId: content.content?.contentId!,
             title: content.content?.title!,

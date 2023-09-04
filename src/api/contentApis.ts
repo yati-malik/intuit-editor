@@ -1,7 +1,7 @@
 import { APIS } from "../constants/contants";
 import { EditorContent } from "../types"
 import { IdAndTitle } from "../types/editor";
-import { Axios } from './axios';
+import Axios from './axios';
 
 export const getContentById = async (id: string): Promise<EditorContent> => {
     const apiResponse = await Axios.get(APIS.getContent, { params: { id } });

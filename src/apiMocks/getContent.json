@@ -1,0 +1,62 @@
+[
+    {
+        "success": true,
+        "body": {
+            "contentId": "ff3e3926-a8b4-4823-bff8-fac8a3674aa0",
+            "title": "Movies",
+            "children": [
+                {
+                    "children": [
+                        {
+                            "text": "Avatar"
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "OMG"
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "Iron Man"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "success": true,
+        "body": {
+            "contentId": "fd22943e-10bd-41cf-963f-f64a3a463ac4",
+            "title": "Cities",
+            "children": [
+                {
+                    "children": [
+                        {
+                            "text": "Delhi"
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "Mumbai"
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "Gurgaon"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]
