@@ -39,12 +39,6 @@ export const EditorElement = ({ attributes, children, element }: { attributes: a
                     {children}
                 </ol>
             )
-        case 'pattern':
-            return (
-                <span style={style} {...attributes}>
-                    {children}
-                </span>
-            )
         default:
             return (
                 <p style={style} {...attributes}>

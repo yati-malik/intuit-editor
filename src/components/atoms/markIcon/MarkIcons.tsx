@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { cx, css } from '@emotion/css';
-import { BaseProps } from '../../types/editor';
+import { BaseProps } from '../../../types/editor';
 
 export const Icon =
     (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSlate } from 'slate-react';
 import { MarkFormatTypes, SlateEditor } from '../../../types/editor';
-import { Icon } from '../../atoms/MarkIcons';
+import { Icon } from '../../atoms/markIcon/MarkIcons';
 import { isMarkActive, toggleMark } from '../../organisms/editor/utils';
 import { Button } from '../../atoms/toolbarButton/Button';
 

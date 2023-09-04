@@ -1,21 +1,16 @@
 import React, { ReactNode } from 'react';
-import { SlateEditor } from '../../../types/editor';
 
-export const EditorLeaf = ({ attributes, children, leaf, editor }: { attributes: any, children: ReactNode, leaf: any, editor: SlateEditor }) => {
+export const EditorLeaf = ({ attributes, children, leaf }: { attributes: any, children: ReactNode, leaf: any }) => {
     if (leaf.bold) {
-        children = <strong>{children}</strong>
+        children = <strong data-testid='e-bold'>{children}</strong>
     }
 
     if (leaf.italic) {
-        children = <em>{children}</em>
+        children = <em data-testid='e-em'>{children}</em>
     }
 
     if (leaf.underline) {
-        children = <u>{children}</u>
-    }
-
-    if (leaf.pattern) {
-        children = <span>{children}</span>
+        children = <u data-testid='e-um'>{children}</u>
     }
 
     return <span {...attributes}>{children}</span>

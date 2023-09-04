@@ -3,7 +3,7 @@ import { AlignTypes, EditorElementType } from '../../../types/editor';
 import { Button } from '../../atoms/toolbarButton/Button';
 import { useSlate } from 'slate-react'
 import { isBlockActive, toggleBlock } from '../../organisms/editor/utils';
-import { Icon } from '../../atoms/MarkIcons';
+import { Icon } from '../../atoms/markIcon/MarkIcons';
 import { TEXT_ALIGN_TYPES } from '../../../constants/contants';
 
 export const BlockButton = ({ format, icon }: { format: EditorElementType | AlignTypes, icon: string }) => {

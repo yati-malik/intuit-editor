@@ -30,7 +30,7 @@ const TextEditor = ({ initialContent, updateContent, resolveContent, saveContent
 
     const editor: SlateEditor = useMemo(() => withHistory(withReact(createEditor())), [])
     const renderElement = useCallback((props: any) => <EditorElement {...props} />, [])
-    const renderLeaf = useCallback((props: any) => <EditorLeaf {...props} editor={editor} />, [])
+    const renderLeaf = useCallback((props: any) => <EditorLeaf {...props} />, [])
 
     return (
         <Slate editor={editor} initialValue={initialContent}

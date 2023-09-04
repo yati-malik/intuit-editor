@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from '../../atoms/MarkIcons';
+import { Icon } from '../../atoms/markIcon/MarkIcons';
 import styles from './custombutton.module.scss';
 
 interface SavePropTypes {
